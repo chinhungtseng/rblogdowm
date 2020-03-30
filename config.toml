@@ -1,4 +1,4 @@
-baseURL = "https://example.com"
+baseURL = "/"
 languageCode = "en-us"
 defaultContentLanguage = "en"
 title = "chinhung's blog"
@@ -14,8 +14,8 @@ enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/func
 # disqusShortname = "yourdiscussshortname"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
 
-[permalinks]
-    post = "/:year/:month/:day/:slug/"
+# [permalinks]
+#    post = "/:year/:month/:day/:slug/"
 
 [author]
   name = "chinhungtseng"
