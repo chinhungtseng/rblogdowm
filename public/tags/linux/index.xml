@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>chinhung&#39;s blog</title>
-    <link>/</link>
-    <description>Recent content on chinhung&#39;s blog</description>
+    <title>Linux on chinhung&#39;s blog</title>
+    <link>/tags/linux/</link>
+    <description>Recent content in Linux on chinhung&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 30 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -33,25 +33,6 @@
 reference: https://opensource.com/article/18/3/creating-bash-completion-script
   先查詢是否有安裝 bash-completion $ rpm -qi bash-completion # package bash-completion is not installed 確定沒有這個軟體，那就開始進行安裝。
  安裝 bash-completion $ sudo yum -y install bash-completion bash-completion-extras # Loaded plugins: fastestmirror # Loading mirror speeds from cached hostfile # epel/x86_64/metalink | 9.</description>
-    </item>
-    
-    <item>
-      <title>About me</title>
-      <link>/about-hugo/</link>
-      <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/about-hugo/</guid>
-      <description>Hi! I&amp;rsquo;m Chin Hung Tseng. Experience with maintaining Linux server, developing R/Shiny applications and R package.
-Contact  E-mail: bluesshown@gmail.com linkedin: @chinhungtseng  </description>
-    </item>
-    
-    <item>
-      <title>Hello World!</title>
-      <link>/post/hello-world/</link>
-      <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/post/hello-world/</guid>
-      <description>This is first post on my blog.</description>
     </item>
     
   </channel>

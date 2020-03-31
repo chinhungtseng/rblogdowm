@@ -1,0 +1,73 @@
+---
+title: Install Cockpit
+author: chinhungtseng
+date: '2020-03-31'
+slug: centos-cockpit
+categories:
+  - Linux
+tags:
+  - Linux
+  - cockpit
+comments: no
+images: ~
+---
+
+
+
+<div id="what-is-cockpit" class="section level2">
+<h2>What is Cockpit?</h2>
+<p>Cockpit 是一個圖形介面的主機效能監控、管理工具</p>
+<blockquote>
+<p>Official web: <a href="https://cockpit-project.org" class="uri">https://cockpit-project.org</a>
+Cockpit makes GNU/Linux discoverable. See your server in a web browser and perform system tasks with a mouse. It’s easy to start containers, administer storage, configure networks, and inspect logs.</p>
+</blockquote>
+</div>
+<div id="安裝程式" class="section level2">
+<h2>安裝程式</h2>
+<pre class="shell"><code># CentOS 
+$ sudo yum -y install cockpit \         # 主要軟體
+                    cockpit-docker \    # 管理 docker
+                    cockpit-dashboard \ # 管理多臺主機
+                    cockpit-packagekit  # 管理軟體
+# Ubuntu
+$ sudo apt-get install cockpit \        # 主要軟體
+                    cockpit-docker \    # 管理 docker
+                    cockpit-dashboard \ # 管理多臺主機
+                    cockpit-packagekit  # 管理軟體</code></pre>
+</div>
+<div id="啟動服務" class="section level2">
+<h2>啟動服務</h2>
+<pre class="shell"><code>$ sudo systemctl enable cockpit.socket
+$ sudo systemctl start cockpit.socket
+
+$ systemctl status cockpit  # 檢查服務狀態</code></pre>
+</div>
+<div id="設定防火牆" class="section level2">
+<h2>設定防火牆</h2>
+<pre class="shell"><code># CentOS
+$ sudo firewall-cmd --permanent --zone=public --add-service=cockpit
+$ sudo firewall-cmd --reload</code></pre>
+</div>
+<div id="操作介面" class="section level2">
+<h2>操作介面</h2>
+<ol style="list-style-type: decimal">
+<li><p>打開預覽器輸入 <strong><code>your_ip_address:9090</code></strong>，例如: <em>192.168.11.14:9090</em></p></li>
+<li><p>登入畫面</p>
+<div class="figure">
+<img src="/post/2020-03-31-centos-cockpit_files/cockpit_login_.png" alt="" />
+<p class="caption">cockpit 網頁登入畫面</p>
+</div></li>
+<li><p>網頁呈現</p>
+<div class="figure">
+<img src="/post/2020-03-31-centos-cockpit_files/cockpit_console.png" alt="" />
+<p class="caption">cockpit 使用介面</p>
+</div></li>
+</ol>
+</div>
+<div id="其他更多設定與參考資料" class="section level2">
+<h2>其他更多設定與參考資料</h2>
+<ul>
+<li><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/getting_started_with_cockpit/installing_and_enabling_cockpit">Red Hat Documentation</a></li>
+<li><a href="https://cockpit-project.org/running.html">Cockpit Installation</a></li>
+</ul>
+</div>

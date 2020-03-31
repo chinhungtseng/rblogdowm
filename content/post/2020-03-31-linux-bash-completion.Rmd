@@ -1,0 +1,90 @@
+---
+title: Linux bash-completion
+author: chinhungtseng
+date: '2020-03-31'
+slug: linux-bash-completion
+categories:
+  - Linux
+tags:
+  - Linux
+comments: no
+images: ~
+---
+
+## What is Bash completion?
+
+> Bash completion is a functionality through which Bash helps users type their commands more quickly and easily. It does this by presenting possible options when users press the Tab key while typing a command.
+> 
+> reference: https://opensource.com/article/18/3/creating-bash-completion-script
+
+## 先查詢是否有安裝 bash-completion 
+
+```shell
+$  rpm -qi bash-completion
+# package bash-completion is not installed
+```
+
+確定沒有這個軟體，那就開始進行安裝。
+
+## 安裝 bash-completion 
+
+```shell
+$ sudo yum -y install bash-completion bash-completion-extras
+
+# Loaded plugins: fastestmirror
+# Loading mirror speeds from cached hostfile
+# epel/x86_64/metalink                                                                                                                    | 9.0 kB  00:00:00
+# * base: ftp.tc.edu.tw
+# * epel: fedora.cs.nctu.edu.tw
+# * extras: ftp.tc.edu.tw
+# * updates: ftp.tc.edu.tw
+# base                                                                                                                                    | 3.6 kB  00:00:00
+# extras                                                                                                                                  | 2.9 kB  00:00:00
+# updates                                                                                                                                 | 2.9 kB  00:00:00
+# updates/7/x86_64/primary_db                                                                                                             | 5.8 MB  00:00:00
+# Resolving Dependencies
+# --> Running transaction check
+# ---> Package bash-completion.noarch 1:2.1-6.el7 will be installed
+# ---> Package bash-completion-extras.noarch 1:2.1-11.el7 will be installed
+# --> Finished Dependency Resolution
+# 
+# Dependencies Resolved
+# 
+# =============================================================================================================================================================== 
+# Package                                          Arch                             Version                                Repository                      Size 
+# ===============================================================================================================================================================
+# Installing:
+#   bash-completion                                  noarch                           1:2.1-6.el7                            base                            85 k  
+#   bash-completion-extras                           noarch                           1:2.1-11.el7                           epel                           123 k
+# 
+# Transaction Summary
+# ===============================================================================================================================================================
+# Install  2 Packages
+# 
+# Total download size: 208 k
+# Installed size: 648 k
+# Is this ok [y/d/N]: y
+# Downloading packages:
+#   (1/2): bash-completion-2.1-6.el7.noarch.rpm                                                                                             |  85 kB  00:00:00
+#   (2/2): bash-completion-extras-2.1-11.el7.noarch.rpm                                                                                     | 123 kB  00:00:00
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+#   Total                                                                                                                          225 kB/s | 208 kB  00:00:00
+# Running transaction check
+# Running transaction test
+# Transaction test succeeded
+# Running transaction
+# Installing : 1:bash-completion-2.1-6.el7.noarch                                                                                                          1/2
+# Installing : 1:bash-completion-extras-2.1-11.el7.noarch                                                                                                  2/2
+# Verifying  : 1:bash-completion-extras-2.1-11.el7.noarch                                                                                                  1/2
+# Verifying  : 1:bash-completion-2.1-6.el7.noarch                                                                                                          2/2
+# 
+# Installed:
+#   bash-completion.noarch 1:2.1-6.el7                                         
+#   bash-completion-extras.noarch 1:2.1-11.el7
+# 
+# Complete!
+```
+
+## 重新登入
+
+登出再登入系統後，就能使用了

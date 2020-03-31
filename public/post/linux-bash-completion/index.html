@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Linux bash-completion">
+<meta itemprop="description" content="What is Bash completion?  Bash completion is a functionality through which Bash helps users type their commands more quickly and easily. It does this by presenting possible options when users press the Tab key while typing a command.
+reference: https://opensource.com/article/18/3/creating-bash-completion-script
+  先查詢是否有安裝 bash-completion $ rpm -qi bash-completion # package bash-completion is not installed 確定沒有這個軟體，那就開始進行安裝。
+ 安裝 bash-completion $ sudo yum -y install bash-completion bash-completion-extras # Loaded plugins: fastestmirror # Loading mirror speeds from cached hostfile # epel/x86_64/metalink | 9.">
+<meta itemprop="datePublished" content="2020-03-31T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-03-31T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="283">
+
+
+
+<meta itemprop="keywords" content="Linux," /><meta property="og:title" content="Linux bash-completion" />
+<meta property="og:description" content="What is Bash completion?  Bash completion is a functionality through which Bash helps users type their commands more quickly and easily. It does this by presenting possible options when users press the Tab key while typing a command.
+reference: https://opensource.com/article/18/3/creating-bash-completion-script
+  先查詢是否有安裝 bash-completion $ rpm -qi bash-completion # package bash-completion is not installed 確定沒有這個軟體，那就開始進行安裝。
+ 安裝 bash-completion $ sudo yum -y install bash-completion bash-completion-extras # Loaded plugins: fastestmirror # Loading mirror speeds from cached hostfile # epel/x86_64/metalink | 9." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/linux-bash-completion/" />
+<meta property="article:published_time" content="2020-03-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-03-31T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux bash-completion"/>
+<meta name="twitter:description" content="What is Bash completion?  Bash completion is a functionality through which Bash helps users type their commands more quickly and easily. It does this by presenting possible options when users press the Tab key while typing a command.
+reference: https://opensource.com/article/18/3/creating-bash-completion-script
+  先查詢是否有安裝 bash-completion $ rpm -qi bash-completion # package bash-completion is not installed 確定沒有這個軟體，那就開始進行安裝。
+ 安裝 bash-completion $ sudo yum -y install bash-completion bash-completion-extras # Loaded plugins: fastestmirror # Loading mirror speeds from cached hostfile # epel/x86_64/metalink | 9."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Linux bash-completion</title>
+	<link rel="stylesheet" href="/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/">chinhung&#39;s blog</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="/post/">Posts</a>
+				<a href="/about-hugo/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://www.linkedin.com/in/chinhungtseng/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://instagram.com/chinhungtseng" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/chinhungtseng" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="/post/">Posts</a></li>
+			<li><a href="/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner thin animated fadeIn faster">
+		<h1>Linux bash-completion</h1>
+		<div class="content">
+			
+
+
+<div id="what-is-bash-completion" class="section level2">
+<h2>What is Bash completion?</h2>
+<blockquote>
+<p>Bash completion is a functionality through which Bash helps users type their commands more quickly and easily. It does this by presenting possible options when users press the Tab key while typing a command.</p>
+<p>reference: <a href="https://opensource.com/article/18/3/creating-bash-completion-script" class="uri">https://opensource.com/article/18/3/creating-bash-completion-script</a></p>
+</blockquote>
+</div>
+<div id="先查詢是否有安裝-bash-completion" class="section level2">
+<h2>先查詢是否有安裝 bash-completion</h2>
+<pre class="shell"><code>$  rpm -qi bash-completion
+# package bash-completion is not installed</code></pre>
+<p>確定沒有這個軟體，那就開始進行安裝。</p>
+</div>
+<div id="安裝-bash-completion" class="section level2">
+<h2>安裝 bash-completion</h2>
+<pre class="shell"><code>$ sudo yum -y install bash-completion bash-completion-extras
+
+# Loaded plugins: fastestmirror
+# Loading mirror speeds from cached hostfile
+# epel/x86_64/metalink                                                                                                                    | 9.0 kB  00:00:00
+# * base: ftp.tc.edu.tw
+# * epel: fedora.cs.nctu.edu.tw
+# * extras: ftp.tc.edu.tw
+# * updates: ftp.tc.edu.tw
+# base                                                                                                                                    | 3.6 kB  00:00:00
+# extras                                                                                                                                  | 2.9 kB  00:00:00
+# updates                                                                                                                                 | 2.9 kB  00:00:00
+# updates/7/x86_64/primary_db                                                                                                             | 5.8 MB  00:00:00
+# Resolving Dependencies
+# --&gt; Running transaction check
+# ---&gt; Package bash-completion.noarch 1:2.1-6.el7 will be installed
+# ---&gt; Package bash-completion-extras.noarch 1:2.1-11.el7 will be installed
+# --&gt; Finished Dependency Resolution
+# 
+# Dependencies Resolved
+# 
+# =============================================================================================================================================================== 
+# Package                                          Arch                             Version                                Repository                      Size 
+# ===============================================================================================================================================================
+# Installing:
+#   bash-completion                                  noarch                           1:2.1-6.el7                            base                            85 k  
+#   bash-completion-extras                           noarch                           1:2.1-11.el7                           epel                           123 k
+# 
+# Transaction Summary
+# ===============================================================================================================================================================
+# Install  2 Packages
+# 
+# Total download size: 208 k
+# Installed size: 648 k
+# Is this ok [y/d/N]: y
+# Downloading packages:
+#   (1/2): bash-completion-2.1-6.el7.noarch.rpm                                                                                             |  85 kB  00:00:00
+#   (2/2): bash-completion-extras-2.1-11.el7.noarch.rpm                                                                                     | 123 kB  00:00:00
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+#   Total                                                                                                                          225 kB/s | 208 kB  00:00:00
+# Running transaction check
+# Running transaction test
+# Transaction test succeeded
+# Running transaction
+# Installing : 1:bash-completion-2.1-6.el7.noarch                                                                                                          1/2
+# Installing : 1:bash-completion-extras-2.1-11.el7.noarch                                                                                                  2/2
+# Verifying  : 1:bash-completion-extras-2.1-11.el7.noarch                                                                                                  1/2
+# Verifying  : 1:bash-completion-2.1-6.el7.noarch                                                                                                          2/2
+# 
+# Installed:
+#   bash-completion.noarch 1:2.1-6.el7                                         
+#   bash-completion-extras.noarch 1:2.1-11.el7
+# 
+# Complete!</code></pre>
+</div>
+<div id="重新登入" class="section level2">
+<h2>重新登入</h2>
+<p>登出再登入系統後，就能使用了</p>
+</div>
+
+		</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="/">chinhungtseng</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

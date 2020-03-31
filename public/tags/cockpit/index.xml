@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cockpit on chinhung&#39;s blog</title>
+    <link>/tags/cockpit/</link>
+    <description>Recent content in cockpit on chinhung&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 31 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/cockpit/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Install Cockpit</title>
+      <link>/post/centos-cockpit/</link>
+      <pubDate>Tue, 31 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/centos-cockpit/</guid>
+      <description>What is Cockpit? Cockpit 是一個圖形介面的主機效能監控、管理工具
+ Official web: https://cockpit-project.org Cockpit makes GNU/Linux discoverable. See your server in a web browser and perform system tasks with a mouse. It’s easy to start containers, administer storage, configure networks, and inspect logs.
+  安裝程式 # CentOS $ sudo yum -y install cockpit \ # 主要軟體 cockpit-docker \ # 管理 docker cockpit-dashboard \ # 管理多臺主機 cockpit-packagekit # 管理軟體 # Ubuntu $ sudo apt-get install cockpit \ # 主要軟體 cockpit-docker \ # 管理 docker cockpit-dashboard \ # 管理多臺主機 cockpit-packagekit # 管理軟體  啟動服務 $ sudo systemctl enable cockpit.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,72 @@
+---
+title: Install Cockpit
+author: chinhungtseng
+date: '2020-03-31'
+slug: centos-cockpit
+categories:
+  - Linux
+tags:
+  - Linux
+  - cockpit
+comments: no
+images: ~
+---
+
+## What is Cockpit?
+
+Cockpit 是一個圖形介面的主機效能監控、管理工具
+
+> Official web: https://cockpit-project.org
+> Cockpit makes GNU/Linux discoverable. See your server in a web browser and perform system tasks with a mouse. It’s easy to start containers, administer storage, configure networks, and inspect logs.
+
+## 安裝程式
+
+```shell
+# CentOS 
+$ sudo yum -y install cockpit \         # 主要軟體
+                    cockpit-docker \    # 管理 docker
+                    cockpit-dashboard \ # 管理多臺主機
+                    cockpit-packagekit  # 管理軟體
+# Ubuntu
+$ sudo apt-get install cockpit \        # 主要軟體
+                    cockpit-docker \    # 管理 docker
+                    cockpit-dashboard \ # 管理多臺主機
+                    cockpit-packagekit  # 管理軟體
+```
+
+## 啟動服務
+
+```shell
+$ sudo systemctl enable cockpit.socket
+$ sudo systemctl start cockpit.socket
+
+$ systemctl status cockpit  # 檢查服務狀態
+```
+
+## 設定防火牆
+
+```shell
+# CentOS
+$ sudo firewall-cmd --permanent --zone=public --add-service=cockpit
+$ sudo firewall-cmd --reload
+```
+## 操作介面
+
+1) 打開預覽器輸入 **`your_ip_address:9090`**，例如: _192.168.11.14:9090_
+
+2) 登入畫面
+
+    ![cockpit 網頁登入畫面](/post/2020-03-31-centos-cockpit_files/cockpit_login_.png)
+
+3) 網頁呈現
+
+    ![cockpit 使用介面](/post/2020-03-31-centos-cockpit_files/cockpit_console.png)
+
+## 其他更多設定與參考資料
+
+ - [Red Hat Documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/getting_started_with_cockpit/installing_and_enabling_cockpit)
+- [Cockpit Installation](https://cockpit-project.org/running.html)
+
+
+
+
