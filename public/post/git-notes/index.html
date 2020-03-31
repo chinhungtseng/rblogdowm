@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Git notes">
+<meta itemprop="description" content="Table of Contents
+ 參考書籍(reference) 什麼是 git 安裝 git (install git) git 設定檔 (configuration) 新增 git repositories Recording Changes to the Repository 將檔案從工作目錄加入 git (staged) 將暫存區(staged)內容提交到 git 倉庫 刪除檔案 變更檔名 檢視 commit 紀錄 修改 commit 紀錄 忽略檔案規則(ignore specified files) 取消修改被修改檔案 重做 commit 查看 git 物件(object) 分支(branch)操作 標籤(tag) 儲存目前工作狀態 將檔案從 git 真正移除 遠端操作(remote) 使用 github 製作靜態網頁 製作用 email 傳送的更新檔(patch)  參考書籍 reference  為自己學 git pro git 2   什麼是 git  git 是開源的分散式版本控制系統 github 為共同協作的一個平台(商業網站)，本體為 git server   安裝 git install git  macOS  $ brew install git  linux  $ sudo yum install git  git 設定檔 configuration  全域設定，使用 --global  $ git config --global user.">
+<meta itemprop="datePublished" content="2020-03-31T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-03-31T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="915">
+
+
+
+<meta itemprop="keywords" content="git," /><meta property="og:title" content="Git notes" />
+<meta property="og:description" content="Table of Contents
+ 參考書籍(reference) 什麼是 git 安裝 git (install git) git 設定檔 (configuration) 新增 git repositories Recording Changes to the Repository 將檔案從工作目錄加入 git (staged) 將暫存區(staged)內容提交到 git 倉庫 刪除檔案 變更檔名 檢視 commit 紀錄 修改 commit 紀錄 忽略檔案規則(ignore specified files) 取消修改被修改檔案 重做 commit 查看 git 物件(object) 分支(branch)操作 標籤(tag) 儲存目前工作狀態 將檔案從 git 真正移除 遠端操作(remote) 使用 github 製作靜態網頁 製作用 email 傳送的更新檔(patch)  參考書籍 reference  為自己學 git pro git 2   什麼是 git  git 是開源的分散式版本控制系統 github 為共同協作的一個平台(商業網站)，本體為 git server   安裝 git install git  macOS  $ brew install git  linux  $ sudo yum install git  git 設定檔 configuration  全域設定，使用 --global  $ git config --global user." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/git-notes/" />
+<meta property="article:published_time" content="2020-03-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-03-31T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Git notes"/>
+<meta name="twitter:description" content="Table of Contents
+ 參考書籍(reference) 什麼是 git 安裝 git (install git) git 設定檔 (configuration) 新增 git repositories Recording Changes to the Repository 將檔案從工作目錄加入 git (staged) 將暫存區(staged)內容提交到 git 倉庫 刪除檔案 變更檔名 檢視 commit 紀錄 修改 commit 紀錄 忽略檔案規則(ignore specified files) 取消修改被修改檔案 重做 commit 查看 git 物件(object) 分支(branch)操作 標籤(tag) 儲存目前工作狀態 將檔案從 git 真正移除 遠端操作(remote) 使用 github 製作靜態網頁 製作用 email 傳送的更新檔(patch)  參考書籍 reference  為自己學 git pro git 2   什麼是 git  git 是開源的分散式版本控制系統 github 為共同協作的一個平台(商業網站)，本體為 git server   安裝 git install git  macOS  $ brew install git  linux  $ sudo yum install git  git 設定檔 configuration  全域設定，使用 --global  $ git config --global user."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Git notes</title>
+	<link rel="stylesheet" href="/css/style.min.657bcb7af31123e4156b1a3d2ff60a636717e54ead74f882136b5114cf72b55e.css" integrity="sha256-ZXvLevMRI+QVaxo9L/YKY2cX5U6tdPiCE2tRFM9ytV4=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/">chinhung&#39;s blog</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="/post/">Posts</a>
+				<a href="/about-hugo/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://www.linkedin.com/in/chinhungtseng/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://instagram.com/chinhungtseng" target="_blank" rel="noopener me" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a><a href="https://github.com/chinhungtseng" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="/post/">Posts</a></li>
+			<li><a href="/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner thin animated fadeIn faster">
+		<h1>Git notes</h1>
+		<div class="content">
+			
+
+
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#參考書籍-reference">參考書籍(reference)</a></li>
+<li><a href="#什麼是-git">什麼是 git</a></li>
+<li><a href="#安裝-git-install-git">安裝 git (install git)</a></li>
+<li><a href="#git-設定檔-configuration">git 設定檔 (configuration)</a></li>
+<li><a href="#新增-git-repositories">新增 git repositories</a></li>
+<li><a href="#recording-changes-to-the-repository">Recording Changes to the Repository</a></li>
+<li><a href="#將檔案從工作目錄加入-git-staged">將檔案從工作目錄加入 git (staged)</a></li>
+<li><a href="#將暫存區-staged-內容提交到-git-倉庫">將暫存區(staged)內容提交到 git 倉庫</a></li>
+<li><a href="#刪除檔案">刪除檔案</a></li>
+<li><a href="#變更檔名">變更檔名</a></li>
+<li><a href="#檢視-commit-紀錄">檢視 commit 紀錄</a></li>
+<li><a href="#修改-commit-紀錄">修改 commit 紀錄</a></li>
+<li><a href="#忽略檔案規則-ignore-specified-files">忽略檔案規則(ignore specified files)</a></li>
+<li><a href="#取消修改被修改檔案">取消修改被修改檔案</a></li>
+<li><a href="#重做-commit">重做 commit</a></li>
+<li><a href="#查看-git-物件-object">查看 git 物件(object)</a></li>
+<li><a href="#分支-branch-操作">分支(branch)操作</a></li>
+<li><a href="#標籤-tag">標籤(tag)</a></li>
+<li><a href="#儲存目前工作狀態">儲存目前工作狀態</a></li>
+<li><a href="#將檔案從-git-真正移除">將檔案從 git 真正移除</a></li>
+<li><a href="#遠端操作-remote">遠端操作(remote)</a></li>
+<li><a href="#使用-github-製作靜態網頁">使用 github 製作靜態網頁</a></li>
+<li><a href="#製作用-email-傳送的更新檔-patch">製作用 email 傳送的更新檔(patch)</a></li>
+</ul>
+<div id="參考書籍-reference" class="section level2">
+<h2>參考書籍 reference</h2>
+<ul>
+<li><a href="https://gitbook.tw">為自己學 git</a></li>
+<li><a href="https://github.com/progit/progit2">pro git 2</a></li>
+</ul>
+</div>
+<div id="什麼是-git" class="section level2">
+<h2>什麼是 git</h2>
+<ul>
+<li><code>git</code> 是開源的分散式版本控制系統</li>
+<li><code>github</code> 為共同協作的一個平台(商業網站)，本體為 <code>git server</code></li>
+</ul>
+</div>
+<div id="安裝-git-install-git" class="section level2">
+<h2>安裝 git install git</h2>
+<ul>
+<li>macOS</li>
+</ul>
+<pre><code>$ brew install git</code></pre>
+<ul>
+<li>linux</li>
+</ul>
+<pre><code>$ sudo yum install git</code></pre>
+</div>
+<div id="git-設定檔-configuration" class="section level2">
+<h2>git 設定檔 configuration</h2>
+<ul>
+<li>全域設定，使用 <code>--global</code></li>
+</ul>
+<pre><code>$ git config --global user.name &lt;user-name&gt;
+$ git config --global user.email &lt;user-email&gt;</code></pre>
+<ul>
+<li>針對特定資料夾(專案)設定，使用 <code>--local</code></li>
+</ul>
+<pre><code>$ git config --local user.name &lt;user-name&gt;
+$ git config --local user.email &lt;user-email&gt;</code></pre>
+<ul>
+<li>查看設定檔</li>
+</ul>
+<pre><code>$ git config --list</code></pre>
+<pre><code>$ cat .git/config</code></pre>
+<ul>
+<li>設定 git cli 別名(alias)</li>
+</ul>
+<pre><code>$ git config --global alias.s status
+$ git config --global alias.c commit
+$ git config --global alias.l &quot;log --oneline --graph --all&quot;</code></pre>
+</div>
+<div id="新增-git-repositories" class="section level2">
+<h2>新增 git repositories</h2>
+<ul>
+<li>現有專案初始化(init)</li>
+</ul>
+<pre><code>$ git init</code></pre>
+<ul>
+<li>clone 遠端專案</li>
+</ul>
+<pre><code>$ git clone &lt;url&gt;
+$ git clone https://github.com/tidyverse/dplyr.git</code></pre>
+<ul>
+<li>取消 git</li>
+</ul>
+<pre><code>$ rm -r .git</code></pre>
+</div>
+<div id="recording-changes-to-the-repository" class="section level2">
+<h2>Recording Changes to the Repository</h2>
+<ul>
+<li>git 檔案分為四種狀態
+<ul>
+<li>Untracked</li>
+<li>Unmodified</li>
+<li>Modified</li>
+<li>Staged</li>
+</ul></li>
+<li>查看 git repositories 狀態(status)</li>
+</ul>
+<pre><code>$ git status</code></pre>
+<ul>
+<li>輸出簡短資訊，加上<code>-s</code>參數</li>
+</ul>
+<pre><code>$ git status -s</code></pre>
+</div>
+<div id="將檔案從工作目錄加入-git-staged" class="section level2">
+<h2>將檔案從工作目錄加入 git staged</h2>
+<ul>
+<li>單一檔案</li>
+</ul>
+<pre><code>$ git add &lt;file&gt;</code></pre>
+<ul>
+<li>所有檔案</li>
+</ul>
+<pre><code>$ git add --all</code></pre>
+<ul>
+<li>加入空資料夾
+先在資料夾中新增任ㄧ空檔案，ex:&gt; <code>.gitkeep</code></li>
+</ul>
+<pre><code>$ touch &lt;empty_dir&gt;/.gitkeep
+$ git add &lt;empty_dir&gt;/.gitkeep</code></pre>
+<ul>
+<li>只選擇部分區塊</li>
+</ul>
+<pre><code>$ git add -p &lt;file&gt;</code></pre>
+</div>
+<div id="將暫存區-staged-內容提交到-git-倉庫" class="section level2">
+<h2>將暫存區 staged 內容提交到 git 倉庫</h2>
+<pre><code>$ git commit -m &quot;&lt;your-commit-message&gt;&quot;</code></pre>
+<ul>
+<li>commit 空的內容</li>
+</ul>
+<pre><code>$ git commit --allow-empty -m &quot;&lt;commit-message&gt;&quot;</code></pre>
+<ul>
+<li>add 結合 commit</li>
+</ul>
+<pre><code>$ git commit -a -m &quot;&lt;commit-message&gt;&quot;</code></pre>
+<ul>
+<li>GPG-sign commits</li>
+</ul>
+<pre><code>$ git commit -S [&lt;keyid&gt;] -m &quot;&lt;commit-message&gt;&quot;</code></pre>
+</div>
+<div id="刪除檔案" class="section level2">
+<h2>刪除檔案</h2>
+<ul>
+<li>直接刪除</li>
+</ul>
+<pre><code>$ rm &lt;file&gt;
+$ git add &lt;deleted file&gt; # 將刪除檔案加入暫存區</code></pre>
+<ul>
+<li>使用 git 刪除，會直接將刪除檔案加入暫存區(staged)</li>
+</ul>
+<pre><code>$ git rm &lt;file&gt; </code></pre>
+<ul>
+<li>保留檔案，但將檔案從暫存區移除</li>
+</ul>
+<pre><code>$ git rm --cached &lt;file&gt;</code></pre>
+</div>
+<div id="變更檔名" class="section level2">
+<h2>變更檔名</h2>
+<pre><code>$ git mv &lt;file_from&gt; &lt;file_to&gt;</code></pre>
+</div>
+<div id="檢視-commit-紀錄" class="section level2">
+<h2>檢視 commit 紀錄</h2>
+<pre><code>$ git log</code></pre>
+<ul>
+<li>檢視特定檔案</li>
+</ul>
+<pre><code>$ git log &lt;file&gt;</code></pre>
+<ul>
+<li>檢視特定檔案每次 commit 做過的修改</li>
+</ul>
+<pre><code>$ git log -p &lt;file&gt;
+$ git show &lt;file/commit&gt;</code></pre>
+<ul>
+<li>檢視每次 commit 新刪修的數量</li>
+</ul>
+<pre><code>$ git log --stat</code></pre>
+<ul>
+<li>以特定的格式呈現</li>
+</ul>
+<pre><code>$ git log --pretty=format
+$ git log --color --graph --pretty=format:&#39;%C(bold white)%h%Creset -%C(bold green)%d%Creset %s %C(bold green)(%cr)%Creset %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit --date=relative</code></pre>
+<ul>
+<li>以圖形方式呈現</li>
+</ul>
+<pre><code>$ git log --oneline --graph
+$ git log --pretty=oneline --abbrev-commit --graph</code></pre>
+<ul>
+<li>尋找特定日期範圍</li>
+</ul>
+<pre><code>$ git log --since=&lt;datetime&gt; --until=&lt;datetime&gt; 
+$ git log --after=&lt;datetime&gt; --before=&lt;datetime&gt;</code></pre>
+<ul>
+<li>尋找 commit 檔案內容中關鍵字</li>
+</ul>
+<pre><code>$ git log -S &lt;word&gt;</code></pre>
+<ul>
+<li>尋找 commit 訊息中關鍵字</li>
+</ul>
+<pre><code>$ git log --grep=&lt;word&gt;</code></pre>
+<ul>
+<li>尋找某人的commit</li>
+</ul>
+<pre><code>$ git log --auther=&lt;name&gt;
+$ git log --committer=&lt;name&gt;</code></pre>
+<ul>
+<li>reference logs</li>
+</ul>
+<pre><code>$ git reflog</code></pre>
+</div>
+<div id="修改-commit-紀錄" class="section level2">
+<h2>修改 commit 紀錄</h2>
+<ul>
+<li>修改最近一次 commit 訊息</li>
+</ul>
+<pre><code>$ git commit --amend -m &quot;&lt;commit-message&gt;&quot;</code></pre>
+<ul>
+<li>修改 commit 歷史訊息(commit 合併/拆解/重做/刪除/調整順序)</li>
+</ul>
+<pre><code>git rebase -i &lt;commit-to&gt;</code></pre>
+<ul>
+<li>追加檔案到最近一次 commit，不修改 commit 訊息</li>
+</ul>
+<pre><code>$ git commit -a --amend --no-edit</code></pre>
+<ul>
+<li>追加檔案到最近一次 commit，修改 commit 訊息</li>
+</ul>
+<pre><code>$ git commit -a --amend -m &quot;&lt;new-commit-message&gt;&quot;</code></pre>
+</div>
+<div id="忽略檔案規則-ignore-specified-files" class="section level2">
+<h2>忽略檔案規則 ignore specified files</h2>
+<ul>
+<li>專案目錄中建立<code>.gitignore</code>檔案，將要忽略檔案名稱寫入<code>.gitignore</code>檔案中</li>
+</ul>
+<pre><code>$ touch .gitignore</code></pre>
+<ul>
+<li>無視<code>.gitignore</code>規則</li>
+</ul>
+<pre><code>$ git add -f &lt;file&gt;</code></pre>
+<ul>
+<li><code>.gitignore</code>的規則只對建立後的檔案有效，如要套用規則，需使用<code>git rm --cached</code>將檔案逐一移出追蹤，或使用<code>git clean -fx</code>全部清除在規則內被忽略的檔案</li>
+</ul>
+</div>
+<div id="取消修改被修改檔案" class="section level2">
+<h2>取消修改被修改檔案</h2>
+<p>將暫存區的檔案拉回(覆蓋)工作目錄的檔案</p>
+<pre><code>$ git checkout -- &lt;file&gt;</code></pre>
+<blockquote>
+<p>git checkout <branch> 後面接分支為切換分支</p>
+</blockquote>
+</div>
+<div id="重做-commit" class="section level2">
+<h2>重做 commit</h2>
+<ul>
+<li>直接選取 commit</li>
+</ul>
+<pre><code>$ git reset &lt;commit&gt;</code></pre>
+<ul>
+<li>使用相對方式
+回到距離 HEAD 前3個 commit 的位置</li>
+</ul>
+<pre><code>$ git reset HEAD~3 &lt;commit&gt;
+$ git reset HEAD^^^ &lt;commit&gt;</code></pre>
+<blockquote>
+<p>^n 為第個順位的 parent commit</p>
+</blockquote>
+<ul>
+<li>reset 主要有3種模式：<code>--mixed</code>、<code>--soft</code>和<code>--hard</code>，<code>--mixed</code>為預設模式</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>模式</th>
+<th>mixed mode</th>
+<th>soft mode</th>
+<th>hard mode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>工作目錄</td>
+<td>不變</td>
+<td>不變</td>
+<td>丟掉</td>
+</tr>
+<tr class="even">
+<td>暫存區</td>
+<td>丟掉</td>
+<td>不變</td>
+<td>丟掉</td>
+</tr>
+<tr class="odd">
+<td>commit 拆出來檔案</td>
+<td>丟回工作目錄</td>
+<td>丟回暫存區</td>
+<td>直接丟掉</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>另一種重做方式，較 <code>reset</code> 保險，因會新增一個 commit 來取消不要的 commit</li>
+</ul>
+<pre><code>$ git revert --no-edit &lt;commit&gt;</code></pre>
+<ul>
+<li><code>reset</code>, <code>revert</code>, <code>rebase</code> 比較</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>git command</th>
+<th>history change</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>git reset</td>
+<td>Yes (較不適合 push 過的 commit)</td>
+<td>將目前狀態設定成指定 commit 狀態</td>
+</tr>
+<tr class="even">
+<td>git revert</td>
+<td>No (適合 push 過的 commit)</td>
+<td>新增一個 commit 反轉(取消)另一個 commit 的內容</td>
+</tr>
+<tr class="odd">
+<td>git rebase</td>
+<td>Yes (較不適合 push 過的 commit)</td>
+<td>自由度最高的修改方式</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="查看-git-物件-object" class="section level2">
+<h2>查看 git 物件 object</h2>
+<ul>
+<li>查看類型</li>
+</ul>
+<pre><code>$ git cat-file -t &lt;object hash&gt;</code></pre>
+<ul>
+<li>查看內容</li>
+</ul>
+<pre><code>$ git cat-file -p &lt;object hash&gt;</code></pre>
+</div>
+<div id="分支-branch-操作" class="section level2">
+<h2>分支 branch 操作</h2>
+<blockquote>
+<p>分支為指向某個 commit 的指標</p>
+</blockquote>
+<ul>
+<li>查看分支狀態</li>
+</ul>
+<pre><code>$ git branch</code></pre>
+<ul>
+<li>建立分支</li>
+</ul>
+<pre><code>$ git branch &lt;branch-name&gt;</code></pre>
+<ul>
+<li>刪除分支</li>
+</ul>
+<pre><code>$ git branch -d &lt;branch-name&gt;
+$ git branch -D &lt;branch-name&gt; #force delete</code></pre>
+<ul>
+<li>變更分支名稱</li>
+</ul>
+<pre><code>$ git branch -m &lt;branch-name&gt;</code></pre>
+<ul>
+<li>切換分支</li>
+</ul>
+<pre><code>$ git checkout &lt;branch-name&gt;</code></pre>
+<ul>
+<li>切換分支時如無分支就建立該分支</li>
+</ul>
+<pre><code>$ git checkout -b &lt;branch-name&gt;</code></pre>
+<ul>
+<li>合併分支</li>
+</ul>
+<pre><code>$ git merge &lt;branch&gt; #使用 merge
+$ git rebase &lt;branch&gt; #使用 rebase</code></pre>
+<ul>
+<li>不使用快轉模式合併分支</li>
+</ul>
+<pre><code>$ git merge --no-ff &lt;branch&gt;</code></pre>
+<ul>
+<li>取消 rebase</li>
+</ul>
+<pre><code>$ git reset ORIG_HEAD --hard</code></pre>
+<ul>
+<li>撿其他分支的 commit 進行合併，加上<code>--no-commit</code>參數後，可先撿過來但不合併</li>
+</ul>
+<pre><code>$ git cherry-pick &lt;commit&gt;</code></pre>
+</div>
+<div id="標籤-tag" class="section level2">
+<h2>標籤 tag</h2>
+<ul>
+<li>查看標籤</li>
+</ul>
+<pre><code>$ git tag [&lt;tag-name&gt;]</code></pre>
+<ul>
+<li>新增輕量標籤 (lightweight tag)</li>
+</ul>
+<pre><code>$ git tag &lt;tag-name&gt;</code></pre>
+<ul>
+<li>新增附註標籤 (annotated tag)</li>
+</ul>
+<pre><code>$ git tag -a -m &lt;msg&gt; &lt;tag-name&gt;</code></pre>
+<ul>
+<li>指定 commit 新增標籤</li>
+</ul>
+<pre><code>$ git tag &lt;tag-name&gt; &lt;commit&gt;</code></pre>
+<ul>
+<li>刪除標籤</li>
+</ul>
+<pre><code>$ git tag -d &lt;tag-name&gt;</code></pre>
+</div>
+<div id="儲存目前工作狀態" class="section level2">
+<h2>儲存目前工作狀態</h2>
+<ul>
+<li>列出已儲存 stash 清單</li>
+</ul>
+<pre><code>$ git stash list</code></pre>
+<ul>
+<li>將目前工作狀態加入 <code>stash</code></li>
+</ul>
+<pre><code>$ git stash [push]</code></pre>
+<ul>
+<li>從 stash 清單中取出 stash，並移除清單中的 stash，相當於 <code>apply</code> + <code>drop</code></li>
+</ul>
+<pre><code>$ git stash pop stash@{&lt;stash index&gt;}</code></pre>
+<ul>
+<li>從 stash 清單中取出 stash，但保留清單中的 stash</li>
+</ul>
+<pre><code>$ git stash apply stash@{&lt;stash index&gt;}</code></pre>
+<ul>
+<li>刪除 stash</li>
+</ul>
+<pre><code>$ git stash drop stash@{&lt;stash index&gt;}</code></pre>
+</div>
+<div id="將檔案從-git-真正移除" class="section level2">
+<h2>將檔案從 git 真正移除</h2>
+<ol style="list-style-type: decimal">
+<li>移除特定檔案</li>
+</ol>
+<pre><code>$ git filter-branch -f --tree-filter &quot;rm -f &lt;file-name&gt;&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>刪除備份點</li>
+</ol>
+<pre><code>$ rm .git/refs/original/refs/heads/master</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>讓<code>reflog</code>過期(預設為30天過期)</li>
+</ol>
+<pre><code>$ git reflog expire --all --expire=now</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>立即啟動 <code>git</code> 資源回收機制</li>
+</ol>
+<pre><code>$ git gc --prune=now</code></pre>
+</div>
+<div id="遠端操作-remote" class="section level2">
+<h2>遠端操作 remote</h2>
+<ul>
+<li>設定遠端 server 節點</li>
+</ul>
+<pre><code>$ git remote add &lt;name&gt; &lt;url&gt;
+$ git reomte add origin &lt;url&gt; #預設節點名稱為`origin`</code></pre>
+<ul>
+<li>檢視 remote 設定的更多資訊</li>
+</ul>
+<pre><code>$ git remote -v
+$ git remote show origin</code></pre>
+<ul>
+<li>重新命名遠端節點</li>
+</ul>
+<pre><code>$ git remote rename &lt;old-name&gt; &lt;new-name&gt;</code></pre>
+<ul>
+<li>刪除遠端節點</li>
+</ul>
+<pre><code>$ git remote remove &lt;name&gt;</code></pre>
+<ul>
+<li>刪除遠端分支(將本地空的分支推到<branch-name>)</li>
+</ul>
+<pre><code>$ git push origin :&lt;branch-name&gt;</code></pre>
+<ul>
+<li>將資料推上遠端倉庫(remote repository)</li>
+</ul>
+<pre><code>$ git push
+$ git push &lt;remote-name&gt; &lt;branch-name&gt;
+$ git push &lt;remote-name&gt; &lt;local-branch-name&gt;:&lt;remote-branch-name&gt;</code></pre>
+<ul>
+<li>將資料推上遠端倉庫，並設定上游(upstream)分支節點</li>
+</ul>
+<pre><code>$ git push -u origin master</code></pre>
+<blockquote>
+<p>把<code>master</code>分支的內容，推向<code>origin</code>這個位置
+將<code>origin</code>遠端倉庫上<code>master</code>分支指到最新的進度，如遠端倉庫沒有 master 分支，就建立和<code>master</code>同名的分支</p>
+</blockquote>
+<ul>
+<li>從 remote repository 下載資料(fetch)</li>
+</ul>
+<pre><code>$ git fetch [&lt;remote&gt;]</code></pre>
+<ul>
+<li>從 remote repository 下載資料並更新本地的進度(same as <code>fetch</code> + <code>merge</code>)</li>
+</ul>
+<pre><code>$ git pull</code></pre>
+<ul>
+<li>使用 rebase 方式下載更新</li>
+</ul>
+<pre><code>$ git pull --rebase</code></pre>
+<ul>
+<li>從伺服器取得 repository</li>
+</ul>
+<pre><code>$ git clone &lt;repository&gt;</code></pre>
+<ul>
+<li>從伺服器取得 repository並存成不同目錄名稱</li>
+</ul>
+<pre><code>$ git clone &lt;repository&gt; &lt;name&gt;</code></pre>
+</div>
+<div id="使用-github-製作靜態網頁" class="section level2">
+<h2>使用 github 製作靜態網頁</h2>
+<ul>
+<li>將資料堆到名為<code>gh-pages</code>分支</li>
+</ul>
+</div>
+<div id="製作用-email-傳送的更新檔-patch" class="section level2">
+<h2>製作用 email 傳送的更新檔 patch</h2>
+<ul>
+<li>製作最新 k 次 commit 的更新檔</li>
+</ul>
+<pre><code>$ git format-patch -k -o &lt;dir-name&gt;</code></pre>
+<ul>
+<li>使用更新檔</li>
+</ul>
+<pre><code>$ git am &lt;dir-name&gt;</code></pre>
+</div>
+
+		</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="/">chinhungtseng</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

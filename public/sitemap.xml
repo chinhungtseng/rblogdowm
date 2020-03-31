@@ -8,6 +8,16 @@
   </url>
   
   <url>
+    <loc>/tags/git/</loc>
+    <lastmod>2020-03-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/git-notes/</loc>
+    <lastmod>2020-03-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/centos-cockpit/</loc>
     <lastmod>2020-03-31T00:00:00+00:00</lastmod>
   </url>

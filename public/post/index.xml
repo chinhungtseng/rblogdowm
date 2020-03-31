@@ -13,6 +13,16 @@
     
     
     <item>
+      <title>Git notes</title>
+      <link>/post/git-notes/</link>
+      <pubDate>Tue, 31 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/git-notes/</guid>
+      <description>Table of Contents
+ 參考書籍(reference) 什麼是 git 安裝 git (install git) git 設定檔 (configuration) 新增 git repositories Recording Changes to the Repository 將檔案從工作目錄加入 git (staged) 將暫存區(staged)內容提交到 git 倉庫 刪除檔案 變更檔名 檢視 commit 紀錄 修改 commit 紀錄 忽略檔案規則(ignore specified files) 取消修改被修改檔案 重做 commit 查看 git 物件(object) 分支(branch)操作 標籤(tag) 儲存目前工作狀態 將檔案從 git 真正移除 遠端操作(remote) 使用 github 製作靜態網頁 製作用 email 傳送的更新檔(patch)  參考書籍 reference  為自己學 git pro git 2   什麼是 git  git 是開源的分散式版本控制系統 github 為共同協作的一個平台(商業網站)，本體為 git server   安裝 git install git  macOS  $ brew install git  linux  $ sudo yum install git  git 設定檔 configuration  全域設定，使用 --global  $ git config --global user.</description>
+    </item>
+    
+    <item>
       <title>Install Cockpit</title>
       <link>/post/centos-cockpit/</link>
       <pubDate>Tue, 31 Mar 2020 00:00:00 +0000</pubDate>
