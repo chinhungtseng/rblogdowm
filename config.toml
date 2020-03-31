@@ -30,10 +30,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
   # Categories are disabled by default.
 
 [params]
-  dateform        = "Mar 30, 2020"
-  dateformShort   = "Mar 20"
-  dateformNum     = "2020-03-30"
-  dateformNumTime = "2020-03-30 00:00 -0700"
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04 -0700"
 
   # Metadata mostly used in document's head
   description = "My website built through Hugo and blogdown."
