@@ -9,4 +9,4 @@ Experience with maintaining Linux server, developing R/Shiny applications and R 
 ## Contact
 
 * E-mail: bluesshown@gmail.com
-* linkedin: [\@chinhungtseng](https://www.linkedin.com/in/chinhungtseng/)
+* linkedin: [@chinhungtseng](https://www.linkedin.com/in/chinhungtseng/)
