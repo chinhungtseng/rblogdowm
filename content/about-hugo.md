@@ -1,6 +1,6 @@
 ---
 date: "2020-03-30"
-title: About me
+title: About
 ---
 
 Hi! I'm Chin Hung Tseng.
