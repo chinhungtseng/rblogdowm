@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on chinhung&#39;s blog</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on chinhung&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 31 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git notes</title>
+      <link>/post/git-notes/</link>
+      <pubDate>Tue, 31 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/git-notes/</guid>
+      <description>Table of Contents
+ 參考書籍(reference) 什麼是 git 安裝 git (install git) git 設定檔 (configuration) 新增 git repositories Recording Changes to the Repository 將檔案從工作目錄加入 git (staged) 將暫存區(staged)內容提交到 git 倉庫 刪除檔案 變更檔名 檢視 commit 紀錄 修改 commit 紀錄 忽略檔案規則(ignore specified files) 取消修改被修改檔案 重做 commit 查看 git 物件(object) 分支(branch)操作 標籤(tag) 儲存目前工作狀態 將檔案從 git 真正移除 遠端操作(remote) 使用 github 製作靜態網頁 製作用 email 傳送的更新檔(patch)  參考書籍 reference  為自己學 git pro git 2   什麼是 git  git 是開源的分散式版本控制系統 github 為共同協作的一個平台(商業網站)，本體為 git server   安裝 git install git  macOS  $ brew install git  linux  $ sudo yum install git  git 設定檔 configuration  全域設定，使用 --global  $ git config --global user.</description>
+    </item>
+    
+    <item>
+      <title>Install Cockpit</title>
+      <link>/post/centos-cockpit/</link>
+      <pubDate>Tue, 31 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/centos-cockpit/</guid>
+      <description>What is Cockpit? Cockpit 是一個圖形介面的主機效能監控、管理工具
+ Official web: https://cockpit-project.org Cockpit makes GNU/Linux discoverable. See your server in a web browser and perform system tasks with a mouse. It’s easy to start containers, administer storage, configure networks, and inspect logs.
+  安裝程式 # CentOS $ sudo yum -y install cockpit \ # 主要軟體 cockpit-docker \ # 管理 docker cockpit-dashboard \ # 管理多臺主機 cockpit-packagekit # 管理軟體 # Ubuntu $ sudo apt-get install cockpit \ # 主要軟體 cockpit-docker \ # 管理 docker cockpit-dashboard \ # 管理多臺主機 cockpit-packagekit # 管理軟體  啟動服務 $ sudo systemctl enable cockpit.</description>
+    </item>
+    
+    <item>
+      <title>Linux bash-completion</title>
+      <link>/post/linux-bash-completion/</link>
+      <pubDate>Tue, 31 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/linux-bash-completion/</guid>
+      <description>What is Bash completion?  Bash completion is a functionality through which Bash helps users type their commands more quickly and easily. It does this by presenting possible options when users press the Tab key while typing a command.
+reference: https://opensource.com/article/18/3/creating-bash-completion-script
+  先查詢是否有安裝 bash-completion $ rpm -qi bash-completion # package bash-completion is not installed 確定沒有這個軟體，那就開始進行安裝。
+ 安裝 bash-completion $ sudo yum -y install bash-completion bash-completion-extras # Loaded plugins: fastestmirror # Loading mirror speeds from cached hostfile # epel/x86_64/metalink | 9.</description>
+    </item>
+    
+    <item>
+      <title>Hello World!</title>
+      <link>/post/hello-world/</link>
+      <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/hello-world/</guid>
+      <description>This is first post on my blog.</description>
+    </item>
+    
+  </channel>
+</rss>
